@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ePrivacy, Issue #2: the cloud that adds up what it can&#39;t read</title>
+<meta name="description" content="How a hospital gets statistics from an untrusted cloud without the cloud seeing one patient value, and how anyone can check the answer. Encrypt, add and audit on your phone. A project by group Trazeus.">
+<meta name="theme-color" content="#0a1d3b">
+<link rel="canonical" href="https://e-privacy.seniru.dev/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://e-privacy.seniru.dev/">
+<meta property="og:title" content="ePrivacy, Issue #2: the cloud that adds up what it can&#39;t read">
+<meta property="og:description" content="How a hospital gets statistics from an untrusted cloud without the cloud seeing one patient value, and how anyone can check the answer. Encrypt, add and audit on your phone. A project by group Trazeus.">
+<meta property="og:image" content="https://e-privacy.seniru.dev/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/art/emblem.png">
+<link rel="preload" href="/assets/fonts/bangers-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<script src="/assets/js/reveal.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" class="sr" aria-hidden="true">
+<!-- Stroke icons for figures and spots. Use one in issue.js by name, for example "lock". -->
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3 6.5l9 6.5 9-6.5"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><path d="M12 14.5v3"/></symbol>
+<symbol id="i-unlock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 7.6-1.7"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3L20.5 2.5"/><path d="M16.5 6.5l3 3"/><path d="M18.5 4.5l2 2"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18"/></symbol>
+<symbol id="i-mega" viewBox="0 0 24 24"><path d="M3 10.5v3a1 1 0 0 0 1 1h3l5.5 4.5v-14L7 9.5H4a1 1 0 0 0-1 1z"/><path d="M16 9a3.5 3.5 0 0 1 0 6"/><path d="M18.5 6.5a7 7 0 0 1 0 11"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z"/><path d="M14 2.5V8h5.5"/><path d="M8 13h8M8 17h5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6.5L9.5 17 4 11.5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 21.5s8-3.8 8-10V5.2l-8-3-8 3v6.3c0 6.2 8 10 8 10z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+<symbol id="i-mask" viewBox="0 0 24 24"><path d="M2.5 9.5c0-1.8 1-2.8 3-2.8h13c2 0 3 1 3 2.8 0 4.3-2.8 7.5-5.8 7.5-2 0-2.3-2-3.7-2s-1.7 2-3.7 2c-3 0-5.8-3.2-5.8-7.5z"/><circle cx="8.3" cy="10.8" r="1.6"/><circle cx="15.7" cy="10.8" r="1.6"/></symbol>
+<symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="3.5" width="18" height="7" rx="1.5"/><rect x="3" y="13.5" width="18" height="7" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13.5a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7L12 5.5"/><path d="M14 10.5a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 18.5"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 16.5V21"/><path d="M7 3.5h10V9a5 5 0 0 1-10 0z"/><path d="M17 5h3v1.5a3.5 3.5 0 0 1-3.5 3.5M7 5H4v1.5A3.5 3.5 0 0 0 7.5 10"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+<symbol id="i-clip" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17.5" rx="2"/><path d="M9 2.5h6V6H9z"/><path d="M9 13.5l2 2 4-4"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2.5V6M15 2.5V6M9 18v3.5M15 18v3.5M2.5 9H6M2.5 15H6M18 9h3.5M18 15h3.5"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.8a3.5 3.5 0 0 1 0 6.4M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></symbol>
+<symbol id="i-browser" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M2.5 8.5h19"/><path d="M5.5 6.3h.01M8 6.3h.01"/></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21.5V5l8-2.5V21.5"/><path d="M12 8.5l8 2.5v10.5"/><path d="M2.5 21.5h19"/><path d="M7.5 8h1.5M7.5 12h1.5M7.5 16h1.5M15.5 13.5H17M15.5 17H17"/></symbol>
+<symbol id="i-vault" viewBox="0 0 24 24"><rect x="3" y="3.5" width="18" height="16" rx="2"/><circle cx="12" cy="11.5" r="4"/><path d="M12 7.5v1.5M12 14v1.5M8 11.5h1.5M14.5 11.5H16"/><path d="M6 19.5v1.5M18 19.5v1.5"/></symbol>
+<symbol id="i-gavel" viewBox="0 0 24 24"><path d="M14.5 3.5l6 6M12 6l6 6M13.3 4.8l-5.6 5.6 6 6 5.6-5.6"/><path d="M10.5 13.5l-7 7"/><path d="M3 21.5h9"/></symbol>
+</svg>
+
+<div class="topbar">
+  <a href="/" class="home" aria-label="Back to the cover"><img src="/art/emblem.png" alt="" width="30" height="30"></a>
+  <b>ePrivacy</b>
+  <span class="issue">Issue #2 <span>· Trazeus</span></span>
+  <div class="progress" id="progress"></div>
+</div>
+
+<section class="cover" aria-labelledby="title">
+  <div class="wrap">
+    <div class="left">
+      <span class="tag ribbon">Privacy-preserving analytics</span>
+      <h1 class="logo" id="title">
+        <img src="/art/emblem.png" alt="" width="74" height="74">
+        <span class="letter">Privacy</span>
+      </h1>
+      <div class="stage ">
+        <div class="burst" aria-hidden="true"></div>
+        <img class="hero" src="/art/hero.webp" alt="The ePrivacy hero, blindfolded, pointing, with a sum symbol and numbered padlocks glowing at his hand" fetchpriority="high">
+        <p class="speech">I can&#39;t see your data!</p>
+      </div>
+    </div>
+
+    <div class="doors">
+      <a class="door try" href="/try"><span class="txt"><b>Try it on your phone</b><span>Be the records officer: lock a stay length, let the cloud add it blind, then catch it cheating. Two minutes.</span></span><span class="go" aria-hidden="true">&rarr;</span></a>
+      <a class="door" href="#ch1"><span class="txt"><b>Read the issue</b><span>How every part works, chapter by chapter, with the technical detail.</span></span><span class="go" aria-hidden="true">&darr;</span></a>
+    </div>
+
+    <div class="caption intro reveal">
+      <p><b>Hospitals want statistics, and the cloud is where they compute them.</b> Data is locked on disk and in transit, but to add anything up, a normal server must unlock it first. For that moment every record sits open in memory.</p>
+      <p>We compute on data that stays locked. The cloud adds encrypted values it cannot read, and a public log lets anyone check the answer. Try it in the game: the cryptography runs on your phone, and nothing you type leaves it. Or <a href="/login">open the app</a>.</p>
+    </div>
+
+    <nav class="panel contents reveal" aria-labelledby="contents-title">
+      <h3 id="contents-title">In this issue</h3>
+      <ol>
+        <li><a href="#ch1"><span>1</span><b>The data-in-use gap</b></a></li>
+        <li><a href="#ch2"><span>2</span><b>Add without unlocking</b></a></li>
+        <li><a href="#ch3"><span>3</span><b>Only totals leave</b></a></li>
+        <li><a href="#ch4"><span>4</span><b>A receipt for every record</b></a></li>
+        <li><a href="#ch5"><span>5</span><b>Five checks, then decrypt</b></a></li>
+        <li><a href="#ch6"><span>6</span><b>Anyone can audit</b></a></li>
+        <li><a href="#ch7"><span>7</span><b>Catching a cheating cloud</b></a></li>
+        <li><a href="#ch8"><span>8</span><b>What we don&#39;t claim</b></a></li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<main>
+<section class="chapter" id="ch1" aria-labelledby="ch1-t">
+  <header><span class="tag">Chapter 1</span><h2 class="letter" id="ch1-t">The data-in-use gap</h2></header>
+  <p class="lede">Encryption protects data on disk and on the wire. Analytics needs the values themselves, so the server decrypts them first. That open moment is the gap.</p>
+  <div class="panel reveal">
+    <h3>Where a record is protected</h3>
+    <ul class="rules"><li class="yes"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span><b>At rest:</b> disk encryption.</span></li><li class="yes"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span><b>In transit:</b> TLS.</span></li><li class="no"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span><b>In use:</b> decrypted in server memory to compute.</span></li></ul>
+    <p class="fig-note">Removing names and ID numbers is not enough. Postcode, date of birth and sex together re-identify most people when joined with public records.</p>
+  </div>
+  <div class="side">
+    <div class="says reveal"><img src="/art/avatar.webp" alt="" width="64" height="64"><p>Locked everywhere except where it matters.</p></div>
+    <details class="deeper"><summary>Behind the panel</summary><div class="body"><p>Insiders, compromised hosts and memory-scraping malware can all read data while it is being computed on. This is the data-in-use gap.</p>
+<p>A second problem is the linkage attack: quasi-identifiers such as postcode, date of birth and sex, joined with a public record, single a person out even when direct identifiers are removed. So we do both things: direct identifiers never leave the hospital, and everything the cloud stores for computing stays encrypted.</p></div></details>
+  </div>
+</section>
+
+<section class="chapter" id="ch2" aria-labelledby="ch2-t">
+  <header><span class="tag">Chapter 2</span><h2 class="letter" id="ch2-t">Add without unlocking</h2></header>
+  <p class="lede">With an additively homomorphic cipher, multiplying two ciphertexts gives the encryption of the sum. The cloud adds locked values and returns a locked total. Only the hospital can open it.</p>
+  <div class="panel reveal">
+    <h3>The trick, with small numbers</h3>
+    <dl class="out"><div class="kv"><dt>Hospital locks</dt><dd>Enc(12) and Enc(30)</dd></div><div class="kv"><dt>Cloud multiplies</dt><dd>Enc(12) × Enc(30)</dd></div></dl>
+    <div class="via"><svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-lock"/></svg><span>Multiply ciphertexts, add values</span></div>
+    <dl class="out"><div class="kv key"><dt>Hospital opens</dt><dd>Dec( … ) = 42</dd></div></dl>
+    <a class="try-link" href="/try">Do it yourself in the game <span aria-hidden="true">&rarr;</span></a>
+  </div>
+  <div class="side">
+    <div class="says reveal"><img src="/art/avatar.webp" alt="" width="64" height="64"><p>I added it up. I never saw a number.</p></div>
+    <details class="deeper"><summary>Behind the panel</summary><div class="body"><h4>Paillier</h4>
+<p>We use the Paillier cryptosystem: Enc(a) · Enc(b) mod n² decrypts to a + b. A fresh keypair is generated for every analytics campaign and the private key never leaves the hospital&#39;s own service. Key length is chosen per campaign, 1024 or 2048 bits.</p>
+<h4>Why not something heavier</h4>
+<p>Fully homomorphic encryption can compute more, but our benchmark put CKKS at about 617 GB for 2 million records at 2048 bits, against about 1 GB for Paillier. Sums, counts and averages need nothing more than addition, so we chose the narrowest scheme that does the job. The Cryptographic Design document has the benchmark.</p></div></details>
+  </div>
+</section>
+
+<section class="chapter" id="ch3" aria-labelledby="ch3-t">
+  <header><span class="tag">Chapter 3</span><h2 class="letter" id="ch3-t">Only totals leave</h2></header>
+  <p class="lede">The hospital drops names, ID numbers, birth dates and postcodes, and encrypts every clinical and billing value. The cloud sees ciphertext and a few coarse labels. It only ever releases group totals.</p>
+  <div class="panel reveal">
+    <h3>What the cloud can see</h3>
+    <ul class="rules"><li class="yes"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>Public keys and ciphertext.</span></li><li class="yes"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>Coarse labels: department, ward, month, age band.</span></li><li class="no"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Names, ID numbers, birth dates, postcodes.</span></li><li class="no"><svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Any measured value: stay, cost, vitals, outcome.</span></li></ul>
+    <p class="fig-note">Groups smaller than the minimum size, 10 by default, are withheld so no individual can be singled out.</p>
+  </div>
+  <div class="side">
+    <div class="says reveal"><img src="/art/avatar.webp" alt="" width="64" height="64"><p>Departments, yes. People, never.</p></div>
+    <details class="deeper"><summary>Behind the panel</summary><div class="body"><h4>Policy at the cloud</h4>
+<p>The cloud gateway enforces roles and a minimum group size (<code>K_MIN</code>, default 10). A result for a group below that size is refused rather than released.</p>
+<h4>Honest limit</h4>
+<p>The coarse labels are visible to the cloud by design, since it needs them to group. They are chosen so a single group has many records.</p></div></details>
+  </div>
+</section>
+
+<section class="chapter" id="ch4" aria-labelledby="ch4-t">
+  <header><span class="tag">Chapter 4</span><h2 class="letter" id="ch4-t">A receipt for every record</h2></header>
+  <p class="lede">When the cloud stores your ciphertexts it signs a receipt: the root of a Merkle tree over every record it got. Drop, add or change one record and the root changes.</p>
+  <div class="panel reveal">
+    <h3>Edit one record, break the root</h3>
+    <dl class="out"><div class="kv"><dt>Entry 2, as logged</dt><dd>record 3 · oncology</dd></div><div class="kv bad"><dt>Entry 2, edited</dt><dd>record 3 · oncology (changed)</dd></div></dl><div class="tree"><div><div class="lab">Root</div><div class="lvl n1"><div class="h root bad">d470bfb0dfc8f08a</div></div></div><div><div class="lab">Level 2</div><div class="lvl n2"><div class="h bad">b3f3e8</div><div class="h">a3b2be</div></div></div><div><div class="lab">Level 1</div><div class="lvl n4"><div class="h">9f7ff3</div><div class="h bad">8d6059</div><div class="h">6be7c6</div><div class="h">153792</div></div></div><div><div class="lab">Entries (leaves)</div><div class="lvl n8"><div class="h">4a21</div><div class="h">0357</div><div class="h bad">3130</div><div class="h">c67a</div><div class="h">f43f</div><div class="h">bc3f</div><div class="h">4361</div><div class="h">3a39</div></div></div></div><div class="published"><div class="kv"><dt>Root the cloud signed</dt><dd>2db005fb8ebc4d1d37f51969…</dd></div><div class="kv bad"><dt>Root after the edit</dt><dd>d470bfb0dfc8f08a5dc74fc8…</dd></div></div>
+    <p class="fig-note">This demo hashes short text labels. The real leaves are the stored ciphertext records.</p>
+    <a class="try-link" href="/try">Edit a record yourself in the game <span aria-hidden="true">&rarr;</span></a>
+  </div>
+  <div class="side">
+    <div class="says reveal"><img src="/art/avatar.webp" alt="" width="64" height="64"><p>Change one thing and every hash up shows it.</p></div>
+    <details class="deeper"><summary>Behind the panel</summary><div class="body"><h4>What the hospital does</h4>
+<p>After upload, the hospital compares the cloud&#39;s signed Merkle root with the one it computed itself. Any single record can later be proven still stored as uploaded, from the Receipts page, with a Merkle proof.</p>
+<h4>Where the code lives</h4>
+<p>Record layout, leaf and Merkle hashing and the signatures live in one shared module, <code>shared/protocol.js</code>, used by the hospital agent, the cloud and the auditor&#39;s browser, so all three agree byte for byte.</p></div></details>
+  </div>
+</section>
+
+<section class="chapter" id="ch5" aria-labelledby="ch5-t">
+  <header><span class="tag">Chapter 5</span><h2 class="letter" id="ch5-t">Five checks, then decrypt</h2></header>
+  <p class="lede">The hospital does not trust the cloud&#39;s answer. A result is accepted only when five independent checks all agree. Only then are the sums decrypted and charted.</p>
+  <div class="panel reveal">
+    <h3>Before anything is opened</h3>
+    <ol class="timeline"><li><p><b>Signature</b><span>The result is signed by the cloud.</span></p></li><li><p><b>Board copy</b><span>It matches what the public log shows.</span></p></li><li><p><b>Input root</b><span>It was computed over the records the hospital sent.</span></p></li><li><p><b>Record count</b><span>No record was left out or added.</span></p></li><li><p><b>Recompute</b><span>It agrees with a recomputation from local plaintext.</span></p></li></ol>
+  </div>
+  <div class="side">
+    <div class="says reveal"><img src="/art/avatar.webp" alt="" width="64" height="64"><p>Trust, but check five times.</p></div>
+    <details class="deeper"><summary>Behind the panel</summary><div class="body"><p>After the checks pass, the hospital decrypts the sums and publishes the decrypted value m together with the randomness r used in the ciphertext. Anyone can then check that gᵐ · rⁿ ≡ C (mod n²) with only public information, so even the hospital cannot misreport a result.</p></div></details>
+  </div>
+</section>
+
+<section class="chapter" id="ch6" aria-labelledby="ch6-t">
+  <header><span class="tag">Chapter 6</span><h2 class="letter" id="ch6-t">Anyone can audit</h2></header>
+  <p class="lede">Every step goes on a signed, hash-chained public bulletin board. An auditor needs no key and no trust in the hospital or the cloud: the browser replays everything.</p>
+  <div class="panel reveal">
+    <h3>The four public checks</h3>
+    <ol class="checks"><li class="ok">The hash chain and every signature hold.</li><li class="ok">Every Merkle root rebuilds from the published ciphertexts.</li><li class="ok">Every encrypted sum recomputes.</li><li class="ok">Every published plaintext matches its ciphertext.</li></ol>
+    <p class="fig-note">Run all four from the Bulletin board page. They run in a Web Worker in your browser and use only public data.</p>
+  </div>
+  <div class="side">
+    <div class="says reveal"><img src="/art/avatar.webp" alt="" width="64" height="64"><p>Don&#39;t take my word. Run it yourself.</p></div>
+    <details class="deeper"><summary>Behind the panel</summary><div class="body"><p>Individual verifiability: the hospital proves its own records were stored as uploaded and used in its query. Universal verifiability: any auditor checks the signed log, rebuilds the input set, recomputes every encrypted sum and verifies every published result using public data only.</p></div></details>
+  </div>
+</section>
+
+<section class="chapter" id="ch7" aria-labelledby="ch7-t">
+  <header><span class="tag">Chapter 7</span><h2 class="letter" id="ch7-t">Catching a cheating cloud</h2></header>
+  <p class="lede">The cloud can misbehave, but not silently. The app ships with a switch that makes it cheat on purpose, so you can watch the hospital and the auditor catch it.</p>
+  <div class="panel reveal">
+    <h3>Two ways to cheat, both caught</h3>
+    <table class="shares"><thead><tr><th scope="col">The cloud…</th><th scope="col">Caught by</th></tr></thead><tbody><tr class="win"><td>drops a record from a query</td><td>Record count and input root</td></tr><tr><td>doubles one ciphertext</td><td>The recomputation, and the auditor&#39;s sum check</td></tr></tbody></table>
+    <p class="fig-note">Run an analysis with the switch on and the hospital rejects it. Run the audit and the matching check fails.</p>
+  </div>
+  <div class="side">
+    <div class="says reveal"><img src="/art/avatar.webp" alt="" width="64" height="64"><p>I tried. It noticed.</p></div>
+    <details class="deeper"><summary>Behind the panel</summary><div class="body"><p>On the Monitor page an admin can turn on drop, which leaves a record out of each query, or tamper, which doubles one ciphertext. Neither can hide: dropping a record or changing a ciphertext alters a root, a count or an encrypted sum that someone is checking independently.</p></div></details>
+  </div>
+</section>
+
+<section class="chapter wide" id="ch8" aria-labelledby="ch8-t">
+  <header><span class="tag">Chapter 8</span><h2 class="letter" id="ch8-t">What we don&#39;t claim</h2></header>
+  <p class="lede">This is an academic project. Here is what it does not do.</p>
+  <div class="side">
+    <div class="limits"><div class="limit reveal"><h3>Not security-audited</h3><p>It shows the design end to end. It is not cleared for real patient data.</p></div><div class="limit reveal"><h3>No differential privacy yet</h3><p>Released totals carry no noise. This is still to build.</p></div><div class="limit reveal"><h3>One hospital only</h3><p>Multi-hospital studies with threshold decryption are still to build.</p></div><div class="limit reveal"><h3>Synthetic data</h3><p>The 540,000 admissions are generated. No real patient data is used anywhere.</p></div></div>
+    
+  </div>
+</section>
+</main>
+
+<footer class="end">
+  <span class="letter white">Encrypted.</span>
+  <span class="letter white">Added blind.</span>
+  <span class="letter">Checked by anyone.</span>
+  <img src="/art/emblem.png" alt="" width="86" height="86">
+  <p class="sign">End of Issue #2 · <span>Trazeus</span></p>
+</footer>
+<p class="fine">This site sends nothing anywhere. The game runs entirely on your phone. An academic project by group Trazeus.</p>
+</body>
+</html>

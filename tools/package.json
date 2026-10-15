@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "type": "module",
+  "description": "Only og.mjs and check.mjs need this. build.mjs runs with plain Node.",
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}

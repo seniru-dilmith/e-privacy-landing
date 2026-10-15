@@ -1,0 +1,100 @@
+/* The shared look of the stall loop: fonts, colour tokens, the browser-window frame and the chips.
+   To use your own colours, change --primary (buttons, badges) and --glow (highlights) below. */
+
+@font-face { font-family: Sora; font-weight: 400; font-display: block; src: url(fonts/sora-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: Sora; font-weight: 500; font-display: block; src: url(fonts/sora-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: Sora; font-weight: 600; font-display: block; src: url(fonts/sora-latin-600-normal.woff2) format("woff2"); }
+@font-face { font-family: Sora; font-weight: 700; font-display: block; src: url(fonts/sora-latin-700-normal.woff2) format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 400; font-display: block; src: url(fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 500; font-display: block; src: url(fonts/jetbrains-mono-latin-500-normal.woff2) format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 700; font-display: block; src: url(fonts/jetbrains-mono-latin-700-normal.woff2) format("woff2"); }
+/* Sinhala and Tamil. Latin letters inside a Sinhala or Tamil line still come from Sora and JetBrains Mono. */
+@font-face { font-family: "Noto Sans Sinhala"; font-weight: 400; font-display: block; src: url(fonts/noto-sans-sinhala-sinhala-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Noto Sans Sinhala"; font-weight: 500; font-display: block; src: url(fonts/noto-sans-sinhala-sinhala-500-normal.woff2) format("woff2"); }
+@font-face { font-family: "Noto Sans Sinhala"; font-weight: 600; font-display: block; src: url(fonts/noto-sans-sinhala-sinhala-600-normal.woff2) format("woff2"); }
+@font-face { font-family: "Noto Sans Sinhala"; font-weight: 700; font-display: block; src: url(fonts/noto-sans-sinhala-sinhala-700-normal.woff2) format("woff2"); }
+@font-face { font-family: "Noto Sans Tamil"; font-weight: 400; font-display: block; src: url(fonts/noto-sans-tamil-tamil-400-normal.woff2) format("woff2"); }
+@font-face { font-family: "Noto Sans Tamil"; font-weight: 500; font-display: block; src: url(fonts/noto-sans-tamil-tamil-500-normal.woff2) format("woff2"); }
+@font-face { font-family: "Noto Sans Tamil"; font-weight: 600; font-display: block; src: url(fonts/noto-sans-tamil-tamil-600-normal.woff2) format("woff2"); }
+@font-face { font-family: "Noto Sans Tamil"; font-weight: 700; font-display: block; src: url(fonts/noto-sans-tamil-tamil-700-normal.woff2) format("woff2"); }
+
+:root {
+  /* brand colours: change these two (and --glow-2) for your own palette */
+  --primary: oklch(0.5491 0.1346 148.79);
+  --glow: oklch(0.8168 0.2155 143.83);
+  --glow-2: oklch(0.6839 0.1761 146.31);
+  --destructive: oklch(0.577 0.245 27.33);
+
+  /* dark stage */
+  --bg: oklch(0.13 0.012 160);
+  --bg-2: oklch(0.17 0.016 160);
+  --panel: oklch(0.2 0.018 160 / 0.72);
+  --fg: oklch(0.96 0.01 150);
+  --muted: oklch(0.72 0.02 150);
+  --faint: oklch(0.5 0.02 150);
+  --line: oklch(0.82 0.2 144 / 0.16);
+  --line-strong: oklch(0.82 0.2 144 / 0.4);
+
+  --sans: Sora, "Noto Sans Sinhala", "Noto Sans Tamil", ui-sans-serif, system-ui, sans-serif;
+  --mono: "JetBrains Mono", "Noto Sans Sinhala", "Noto Sans Tamil", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.mono { font-family: var(--mono); }
+.glow { color: var(--glow); }
+.red { color: var(--destructive); }
+
+/* A browser window around a real screenshot. */
+.window {
+  border-radius: var(--radius);
+  background: #fff;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px var(--line-strong),
+    0 30px 80px -20px oklch(0 0 0 / 0.7),
+    0 0 80px -10px oklch(0.82 0.2 144 / 0.25);
+}
+.window .bar {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  background: oklch(0.95 0 0);
+  border-bottom: 1px solid oklch(0.88 0 0);
+}
+.window .bar i { width: 12px; height: 12px; border-radius: 50%; background: oklch(0.82 0 0); display: block; }
+.window .bar span {
+  margin-left: 14px;
+  font: 500 15px var(--mono);
+  color: oklch(0.45 0 0);
+  background: #fff;
+  border: 1px solid oklch(0.88 0 0);
+  border-radius: 8px;
+  padding: 3px 14px;
+}
+.window img { display: block; width: 100%; height: auto; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font: 500 22px var(--mono);
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: oklch(0.2 0.03 150 / 0.85);
+  color: var(--glow);
+  backdrop-filter: blur(6px);
+}
+.chip.bad { color: oklch(0.8 0.15 27); border-color: oklch(0.6 0.2 27 / 0.6); background: oklch(0.2 0.05 27 / 0.85); }

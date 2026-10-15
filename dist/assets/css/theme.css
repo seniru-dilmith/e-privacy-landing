@@ -1,0 +1,8 @@
+/* Written by tools/build.mjs from issue.js colors. Edit issue.js, not this file. */
+:root {
+  --accent: #22b573;
+  --accent-deep: #0a6a58;
+  --on-accent: #111111;
+  --shadow: #0b4f42;
+  --ribbon: #0b6b4f;
+}
