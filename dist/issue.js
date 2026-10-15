@@ -24,7 +24,7 @@ window.ISSUE = {
   doors: { slidesHref: '/presentation/', slidesTitle: 'Watch the slides', slidesText: 'The stall loop: the idea, the app and how it works, in about two minutes.', playText: 'Be the records officer: lock a stay length, let the cloud add it blind, then catch it cheating. Two minutes.' },
   intro: [
     '**Hospitals want statistics, and the cloud is where they compute them.** Data is locked on disk and in transit, but to add anything up, a normal server must unlock it first. For that moment every record sits open in memory.',
-    'We compute on data that stays locked. The cloud adds encrypted values it cannot read, and a public log lets anyone check the answer. Try it in the game: the cryptography runs on your phone, and nothing you type leaves it. Or [open the app](/login).',
+    'We compute on data that stays locked. The cloud adds encrypted values it cannot read, and a public log lets anyone check the answer. Try it in the game: the cryptography runs on your phone, and nothing you type leaves it.',
   ],
   chapters: [
     {

@@ -21,7 +21,6 @@ node tools/check.mjs   # screenshots and a play-through of the game
 
 `siteUrl` in `issue.js` is `https://e-privacy.seniru.dev`; change it if you host elsewhere.
 
-The page links to the running app at `/login`, so host the site on the same domain as the app, or edit that link in `issue.js`.
 
 An academic project by group Trazeus. Fonts under the SIL Open Font License (see `engine/assets/fonts/`).
 
