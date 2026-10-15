@@ -470,3 +470,6 @@ a.btn { display: inline-block; text-decoration: none; }
 .deeper pre { white-space: pre-wrap; }
 .lede strong, .fig-note strong { font-weight: 700; }
 .tiles2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+/* The slides are for a monitor, so phones and small tablets do not see their button. */
+@media (max-width: 899px) { .door.slides { display: none; } }
