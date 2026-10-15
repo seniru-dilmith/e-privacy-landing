@@ -210,6 +210,7 @@ ${topbar(I.project)}
     <div class="doors">
       <a class="door try" href="/try"><span class="txt"><b>${esc(doors.playTitle || 'Try it on your phone')}</b><span>${inline(doors.playText)}</span></span><span class="go" aria-hidden="true">&rarr;</span></a>
       <a class="door" href="#ch${firstChapter}"><span class="txt"><b>${esc(doors.readTitle || 'Read the issue')}</b><span>${inline(doors.readText || 'How every part works, chapter by chapter, with the technical detail.')}</span></span><span class="go" aria-hidden="true">&darr;</span></a>
+      ${doors.slidesHref ? `<a class="door" href="${esc(doors.slidesHref)}"><span class="txt"><b>${esc(doors.slidesTitle || 'Watch the slides')}</b><span>${inline(doors.slidesText || '')}</span></span><span class="go" aria-hidden="true">&rarr;</span></a>` : ''}
     </div>
 
     <div class="caption intro reveal">
