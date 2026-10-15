@@ -5,6 +5,7 @@ The public face of [E-Privacy](https://github.com/seniru-dilmith/E-Privacy), bui
 | Folder | What it is |
 |---|---|
 | `dist/` | The built landing page and the phone game (`/try`). Upload the contents to any static host. |
+| `static/` | Favicons and the web manifest, copied into `dist/` on build. |
 | `issue.js`, `art/` | The content and artwork. Edit `issue.js`, then rebuild. |
 | `engine/`, `tools/` | The shared site engine, build and check scripts (see `KIT-README.md`). |
 | `presentation/` | The looping stall slides. Open `presentation/index.html` in Chrome, no server needed. |

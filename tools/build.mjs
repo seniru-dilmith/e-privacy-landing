@@ -142,7 +142,10 @@ const head = (title, description, path, extra = '') => `<!doctype html>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/${esc(I.art.emblem)}">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="preload" href="/assets/fonts/bangers-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 <link rel="stylesheet" href="/assets/css/theme.css">
@@ -295,6 +298,7 @@ rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist, { recursive: true });
 cpSync(resolve(engine, 'assets'), resolve(dist, 'assets'), { recursive: true, filter: (p) => !p.endsWith('icons.svg') });
 cpSync(resolve(root, 'art'), resolve(dist, 'art'), { recursive: true });
+if (existsSync(resolve(root, 'static'))) cpSync(resolve(root, 'static'), dist, { recursive: true }); // favicons and manifest
 cpSync(resolve(root, 'issue.js'), resolve(dist, 'issue.js'));
 cpSync(resolve(engine, 'robots.txt'), resolve(dist, 'robots.txt'));
 writeFileSync(resolve(dist, 'assets/css/theme.css'), theme);
