@@ -24,3 +24,9 @@ node tools/check.mjs   # screenshots and a play-through of the game
 The page links to the running app at `/login`, so host the site on the same domain as the app, or edit that link in `issue.js`.
 
 An academic project by group Trazeus. Fonts under the SIL Open Font License (see `engine/assets/fonts/`).
+
+## Hosting on GitHub Pages
+
+The workflow in `.github/workflows/pages.yml` publishes `dist/` at the site root and `presentation/` at `/presentation/` on every push to `main`. Set **Settings → Pages → Source** to **GitHub Actions** once.
+
+The pages use root-relative paths (`/assets/...`), so serve them from a domain root: a custom domain, or a `<user>.github.io` repo. At `<user>.github.io/e-privacy-landing/` they will not load.
